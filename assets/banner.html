@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1600, initial-scale=1">
+  <title>agent-relay</title>
+  <style>
+    :root {
+      --ink: #0c1118;
+      --paper: #e8edf2;
+      --accent: #f38b6c;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 1600px;
+      height: 640px;
+      overflow: hidden;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    body {
+      position: relative;
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .top-rule {
+      position: absolute;
+      left: 72px;
+      top: 72px;
+      width: 64px;
+      height: 6px;
+      background: var(--accent);
+    }
+
+    .intro {
+      position: absolute;
+      left: 72px;
+      top: 193px;
+      width: 590px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 98px;
+      line-height: 1;
+      letter-spacing: -6px;
+      font-weight: 800;
+    }
+
+    h1 span { color: var(--accent); }
+
+    .description {
+      margin: 29px 0 0;
+      max-width: 555px;
+      font-size: 31px;
+      line-height: 1.35;
+      letter-spacing: -0.6px;
+      font-weight: 400;
+    }
+
+    .tags {
+      position: absolute;
+      top: 458px;
+      left: 72px;
+      display: flex;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tags li {
+      padding: 11px 14px;
+      border: 1px solid var(--accent);
+      border-radius: 7px;
+      color: var(--accent);
+      font-size: 19px;
+      font-weight: 500;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .terminal {
+      position: absolute;
+      left: 690px;
+      top: 116px;
+      width: 838px;
+      height: 408px;
+      border: 1px solid var(--paper);
+      border-radius: 15px;
+      background: var(--ink);
+      box-shadow: 12px 12px 0 var(--accent);
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      height: 49px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 24px;
+      border-bottom: 1px solid var(--paper);
+    }
+
+    .terminal-bar i {
+      display: block;
+      width: 9px;
+      height: 9px;
+      border: 1px solid var(--paper);
+      border-radius: 50%;
+    }
+
+    .terminal-bar i:first-child {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    .terminal-body {
+      padding: 28px 25px;
+      font-family: 'DejaVu Sans Mono', monospace;
+      font-size: 14.5px;
+      line-height: 26px;
+      font-variant-ligatures: none;
+    }
+
+    .exchange + .exchange { margin-top: 21px; }
+
+    pre {
+      margin: 0;
+      font: inherit;
+      white-space: pre-wrap;
+      overflow-wrap: normal;
+    }
+
+    .output { color: var(--accent); }
+
+    .cursor {
+      width: 9px;
+      height: 17px;
+      margin-top: 22px;
+      background: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="top-rule" aria-hidden="true"></div>
+  <main class="intro">
+    <h1>agent<span>-</span>relay</h1>
+    <p class="description">Send one brief to the right AI engine, fall back when it fails</p>
+  </main>
+  <ul class="tags">
+    <li>fallback</li>
+    <li>review</li>
+    <li>cross-check</li>
+  </ul>
+  <section class="terminal" aria-label="agent-relay">
+    <div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="terminal-body">
+      <div class="exchange">
+        <pre class="command">$ python3 agent_relay.py research brief.md -o answer.md</pre>
+        <pre class="output">[research] primary: terminal engine error: ERROR: rate limit reached (429); trying next engine</pre>
+        <pre class="output">[research] secondary: success (0.08s)</pre>
+        <pre class="output">Saved answer.md</pre>
+      </div>
+      <div class="cursor" aria-hidden="true"></div>
+    </div>
+  </section>
+</body>
+</html>
